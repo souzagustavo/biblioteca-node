@@ -1,9 +1,10 @@
 import express from "express";
 import LivroController from "../controllers/livrosController.js";
+import expressValidator from "express-validator";
 
 const router = express.Router();
 
-router
+router    
     .get("/livros", LivroController.listarLivros)
     .get("/livros/:id", LivroController.obterLivroPorId)
     .post("/livros", LivroController.cadastrarLivro)

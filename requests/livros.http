@@ -1,0 +1,35 @@
+
+GET http://localhost:3000/livros
+
+##########################################################################
+
+GET http://localhost:3000/livros/6466c2cd1db17c3964e95aa5
+
+##########################################################################
+
+GET http://localhost:3000/livros?editora="Editora Teste Post 2"
+
+##########################################################################
+
+POST http://localhost:3000/livros HTTP/1.1
+content-type: application/json
+
+{
+  "titulo" : "Livro Teste Post 3",
+  "autor" : "Autor Teste Post 3",
+  "editora" : "Editora Teste Post 3",
+  "numeroPaginas" : 300
+}
+
+##########################################################################
+
+PUT http://localhost:3000/livros/6466c2cd1db17c3964e95aa5 HTTP/1.1
+content-type: application/json
+
+{
+  "autor" : "6466c5fb7058d91e651ea0de"
+}
+
+##########################################################################
+
+DELETE  http://localhost:3000/livros/6466c48252a7b02d858abc1d

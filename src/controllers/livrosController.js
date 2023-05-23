@@ -1,10 +1,17 @@
 import livros from "../models/Livro.js"
+import creatorQueries from "../utils/creatorQueries.js";
 
 class LivroController{
 
     static listarLivros = async (req, res) => {
-        try{
-            let todosLivros = await livros.find();
+        try{           
+            let criteria = creatorQueries.creteForMongoDBFromQueryParam(req.query);
+
+            let todosLivros =
+                await livros
+                        .find(criteria)
+                        .populate('autor', 'nome');
+
             res.status(200).json(todosLivros)
         }
         catch(err){
@@ -16,7 +23,10 @@ class LivroController{
         try{
             let id = req.params.id;
 
-            let livro = await livros.findById(id);
+            let livro =
+                await livros
+                    .findById(id)
+                    .populate('autor', 'nome');
 
             if (livro == null)
                 res.status(404).send({message : 'Livro não encontrado'});
@@ -50,7 +60,7 @@ class LivroController{
             if (livroAtualizado == null)
                 res.status(404).send({message : 'Livro não encontrado'});
             else
-                res.status(200).json(livroAtualizado);
+                res.status(204).send();
         }
         catch(err){
             res.status(500).send({message : `${err.message} - erro do atualizar livro.`});
@@ -66,7 +76,7 @@ class LivroController{
             if (livroRemovido == null)
                 res.status(404).send({message : 'Livro não encontrado'});
             else
-                res.status(200).send({message: 'Livro deletado com sucesso'});
+                res.status(204).send();
         }
         catch(err){
             res.status(500).send({message : `${err.message} - erro do deletar livro.`});
