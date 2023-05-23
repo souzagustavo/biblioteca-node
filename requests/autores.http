@@ -1,0 +1,32 @@
+GET http://localhost:3000/autores
+
+##########################################################################
+
+GET http://localhost:3000/autores?nome="Maria da Rocha"
+
+##########################################################################
+
+GET http://localhost:3000/autores/6466c48252a7b02d858abc1d
+
+##########################################################################
+
+POST http://localhost:3000/autores HTTP/1.1
+content-type: application/json
+
+{
+  "nome" : "Teste",
+  "nacionalidade" : "Chileno"  
+}
+
+##########################################################################
+
+PUT http://localhost:3000/autores/6466c6087058d91e651ea0e1 HTTP/1.1
+content-type: application/json
+
+{
+  "nome" : "Maria da Rocha"
+}
+
+##########################################################################
+
+DELETE  http://localhost:3000/autores/6466c48252a7b02d858abc1d
