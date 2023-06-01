@@ -1,17 +1,17 @@
 function creteForMongoDBFromQueryParam( requestQuery ) {
       
-    var criteria = {};
+  var criteria = {};
 
-    if (!requestQuery)
-      return criteria;
+  if (!requestQuery)
+    return criteria;
 
-    const searchParams = new URLSearchParams(requestQuery);
+  const searchParams = new URLSearchParams(requestQuery);
 
-    searchParams.forEach((value, key) => {
-        criteria[key] = value.replace(/"/g, '');
-      });
+  searchParams.forEach((value, key) => {
+    criteria[key] = value.replace(/"/g, "");
+  });
 
-      return criteria;
+  return criteria;
 }
 
 export default { creteForMongoDBFromQueryParam };
