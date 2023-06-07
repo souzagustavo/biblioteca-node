@@ -1,9 +1,12 @@
+import ErroNaoEncontrado from "../erros/ErroNaoEncontrado.js";
 import livros from "../models/Livro.js";
 import creatorQueries from "../utils/creatorQueries.js";
 
+const messagemNaoEncontrado = "Livro não encontrado";
+
 class LivroController{
 
-  static listarLivros = async (req, res) => {
+  static listarLivros = async (req, res, next) => {
     try{           
       let criteria = creatorQueries.creteForMongoDBFromQueryParam(req.query);
 
@@ -14,12 +17,12 @@ class LivroController{
 
       res.status(200).json(todosLivros);
     }
-    catch(err){
-      res.status(500).send({message : `${err.message} - erro do obter livros.`});
+    catch(erro){
+      next(erro);
     }
   };
 
-  static obterLivroPorId = async (req, res) => {
+  static obterLivroPorId = async (req, res, next) => {
     try{
       let id = req.params.id;
 
@@ -29,16 +32,16 @@ class LivroController{
                   .populate("autor", "nome");
 
       if (livro == null)
-        res.status(404).send({message : "Livro não encontrado"});
+        next(new ErroNaoEncontrado(messagemNaoEncontrado));
       else
         res.status(200).json(livro);
     }
-    catch(err){
-      res.status(400).send({message : `${err.message} - erro ao obter o livro.`});
+    catch(erro){
+      next(erro);
     }
   };
 
-  static cadastrarLivro = async (req, res) => {
+  static cadastrarLivro = async (req, res, next) => {
     try{
       const livro = new livros(req.body);
 
@@ -46,43 +49,42 @@ class LivroController{
 
       res.status(201).json(livro);
     }
-    catch(err){
-      res.status(500).send({message : `${err.message} - erro do cadastrar livro.`});
+    catch(erro){
+      next(erro);
     }
   };
 
-  static atualizarLivro = async (req, res) => {
+  static atualizarLivro = async (req, res, next) => {
     try{
       let id = req.params.id;
 
       let livroAtualizado = await livros.findByIdAndUpdate(id, { $set : req.body });
 
       if (livroAtualizado == null)
-        res.status(404).send({message : "Livro não encontrado"});
+        next(new ErroNaoEncontrado(messagemNaoEncontrado));
       else
         res.status(204).send();
     }
-    catch(err){
-      res.status(500).send({message : `${err.message} - erro do atualizar livro.`});
+    catch(erro){
+      next(erro);
     }
   };
 
-  static excluirLivro = async (req, res) => {
+  static excluirLivro = async (req, res, next) => {
     try{
       let id = req.params.id;
 
       let livroRemovido = await livros.findByIdAndDelete(id);
 
       if (livroRemovido == null)
-        res.status(404).send({message : "Livro não encontrado"});
+        next(new ErroNaoEncontrado(messagemNaoEncontrado));
       else
         res.status(204).send();
     }
-    catch(err){
-      res.status(500).send({message : `${err.message} - erro do deletar livro.`});
+    catch(erro){
+      next(erro);
     }
   };
-
 }
 
 export default LivroController;

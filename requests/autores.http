@@ -1,5 +1,7 @@
 GET http://localhost:3000/autores
 
+GET http://localhost:3000/autoressss
+
 ##########################################################################
 
 GET http://localhost:3000/autores?nome="Maria da Rocha"
@@ -7,6 +9,8 @@ GET http://localhost:3000/autores?nome="Maria da Rocha"
 ##########################################################################
 
 GET http://localhost:3000/autores/6466c48252a7b02d858abc1d
+
+GET http://localhost:3000/autores/xxxxxxxxxxxxxxxxxxx
 
 ##########################################################################
 

@@ -3,11 +3,13 @@ GET http://localhost:3000/livros
 
 ##########################################################################
 
-GET http://localhost:3000/livros/6466c2cd1db17c3964e95aa5
+GET http://localhost:3000/livros/6466c2cd1db17c3964e95aa
+
+GET http://localhost:3000/livros/Xxxxxxxxxxxxxxxxxxxx
 
 ##########################################################################
 
-GET http://localhost:3000/livros?editora="Editora Teste Post 2"
+GET http://localhost:3000/livros?editora="Editora Teste Post"
 
 ##########################################################################
 
@@ -16,7 +18,7 @@ content-type: application/json
 
 {
   "titulo" : "Livro Teste Post 3",
-  "autor" : "Autor Teste Post 3",
+  "autor" : "6466c5fb7058d91e651ea0de",
   "editora" : "Editora Teste Post 3",
   "numeroPaginas" : 300
 }
