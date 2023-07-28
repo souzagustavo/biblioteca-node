@@ -9,7 +9,21 @@ GET http://localhost:3000/livros/Xxxxxxxxxxxxxxxxxxxx
 
 ##########################################################################
 
-GET http://localhost:3000/livros?editora="Editora Teste Post"
+GET http://localhost:3000/livros?EdItora="Editora"
+
+GET http://localhost:3000/livros?minPaginas=200
+
+GET http://localhost:3000/livros?maxPaginas=20
+
+GET http://localhost:3000/livros?titulo="Programando"
+
+GET http://localhost:3000/livros?editora="Editora Teste Post 3"
+
+GET http://localhost:3000/livros?editora="Editora Teste Post 3"&teste="teste"
+
+GET http://localhost:3000/livros?nomeAutor=Gustavo
+
+GET http://localhost:3000/livros?nomeAutor=Maria da Rocha
 
 ##########################################################################
 
@@ -17,10 +31,20 @@ POST http://localhost:3000/livros HTTP/1.1
 content-type: application/json
 
 {
-  "titulo" : "Livro Teste Post 3",
+  "titulo" : "Programando em DotNet",
+  "autor" : "6466c6087058d91e651ea0e1",
+  "editora" : "Alura",
+  "numeroPaginas" : 100
+}
+
+POST http://localhost:3000/livros HTTP/1.1
+content-type: application/json
+
+{
+  "titulo" : "        ",
   "autor" : "6466c5fb7058d91e651ea0de",
-  "editora" : "Editora Teste Post 3",
-  "numeroPaginas" : 300
+  "editora" : "Alura",
+  "numeroPaginas" : -6
 }
 
 ##########################################################################
@@ -34,4 +58,4 @@ content-type: application/json
 
 ##########################################################################
 
-DELETE  http://localhost:3000/livros/6466c48252a7b02d858abc1d
+DELETE  http://localhost:3000/livros/647fcbf9340a21b4a5cc1e9f

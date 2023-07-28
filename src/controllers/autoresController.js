@@ -1,6 +1,6 @@
 import ErroNaoEncontrado from "../erros/ErroNaoEncontrado.js";
-import autores from "../models/Autor.js";
-import creatorQueries from "../utils/creatorQueries.js";
+import { autores } from "../models/index.js";
+import creatorQueries from "../utils/mongoDBQueries.js";
 
 const messagemNaoEncontrado = "Autor não encontrado";
 
@@ -8,8 +8,9 @@ class AutorController{
 
   static listarAutores = async (req, res, next) => {
     try{
-
-      let criteria = creatorQueries.creteForMongoDBFromQueryParam(req.query);
+      
+      let criteria = creatorQueries.creteFromQueryParam(
+        req.query, true, ["nome","nacionalidade"]);
 
       let todosAutores = await autores.find(criteria);
 
@@ -80,7 +81,6 @@ class AutorController{
       next(erro);
     }
   };
-
 }
 
 export default AutorController;

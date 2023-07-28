@@ -1,14 +1,15 @@
 import ErroNaoEncontrado from "../erros/ErroNaoEncontrado.js";
-import livros from "../models/Livro.js";
-import creatorQueries from "../utils/creatorQueries.js";
+import { autores, livros } from "../models/index.js";
+import creatorQueries from "../utils/mongoDBQueries.js";
 
 const messagemNaoEncontrado = "Livro não encontrado";
 
 class LivroController{
 
   static listarLivros = async (req, res, next) => {
-    try{           
-      let criteria = creatorQueries.creteForMongoDBFromQueryParam(req.query);
+    try{      
+
+      let criteria = await createCriteria(req);
 
       let todosLivros =
                 await livros
@@ -85,6 +86,31 @@ class LivroController{
       next(erro);
     }
   };
+}
+
+async function createCriteria(req) {
+  
+  let criteria = creatorQueries.creteFromQueryParam(
+    req.query, true, ["titulo","editora"]);
+
+  let { minPaginas, maxPaginas, nomeAutor } = req.query;
+
+  if (minPaginas)
+    criteria.numeroPaginas = { $gte : minPaginas };
+  
+  if (maxPaginas)
+    criteria.numeroPaginas = { $lte : maxPaginas };
+
+  if (nomeAutor) {
+    const autor = await autores.findOne({ nome : nomeAutor });
+   
+    if (autor !== null)
+      criteria.autor = autor._id;
+    else
+      criteria.autor = null;
+  }
+
+  return criteria;
 }
 
 export default LivroController;

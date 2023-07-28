@@ -6,6 +6,8 @@ GET http://localhost:3000/autoressss
 
 GET http://localhost:3000/autores?nome="Maria da Rocha"
 
+GET http://localhost:3000/autores?nome="Maria"
+
 ##########################################################################
 
 GET http://localhost:3000/autores/6466c48252a7b02d858abc1d
@@ -19,7 +21,7 @@ content-type: application/json
 
 {
   "nome" : "Teste",
-  "nacionalidade" : "Chileno"  
+  "nacionalidade" : ""  
 }
 
 ##########################################################################
