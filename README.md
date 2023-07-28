@@ -27,6 +27,6 @@ Iniciando web api
 npm run dev
 ```
 
-Para executar as chamadas REST utilize os scripts diretório `\requests`
+Para executar as chamadas REST utilize os scripts do diretório `\requests`
 
 Requer o uso da extensão [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
