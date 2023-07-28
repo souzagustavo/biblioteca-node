@@ -24,7 +24,7 @@ docker-compose up -d
 ```
 Iniciando web api
 ```bash
-npm run dev`
+npm run dev
 ```
 
 Para executar as chamadas REST utilize os scripts diretório `\requests`
