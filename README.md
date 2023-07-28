@@ -19,10 +19,13 @@ Web Api Rest desenvolvida em Node.js usando express que contém operações CRUD
 ## Como executar localmente
 
 Subindo MongoDB
-`$ docker-compose up -d`
-
+```bash
+docker-compose up -d
+```
 Iniciando web api
-`$npm run dev`
+```bash
+npm run dev`
+```
 
 Para executar as chamadas REST utilize os scripts diretório `\requests`
 
