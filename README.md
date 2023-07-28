@@ -18,8 +18,12 @@ Web Api Rest desenvolvida em Node.js usando express que contém operações CRUD
 
 ## Como executar localmente
 
-´´´
-docker-compose up -d
+Subindo MongoDB
+`$ docker-compose up -d`
 
-npm run dev
-´´´
+Iniciando web api
+`$npm run dev`
+
+Para executar as chamadas REST utilize os scripts diretório `\requests`
+
+Requer o uso da extensão [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
