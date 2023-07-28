@@ -9,14 +9,13 @@ class LivroController{
   static listarLivros = async (req, res, next) => {
     try{      
 
-      let criteria = await createCriteria(req);
+      const criteria = await createCriteria(req);
 
-      let todosLivros =
-                await livros
-                  .find(criteria)
-                  .populate("autor", "nome");
+      const todosLivros = livros.find(criteria);
+      
+      req.resultado = todosLivros;
 
-      res.status(200).json(todosLivros);
+      next();
     }
     catch(erro){
       next(erro);

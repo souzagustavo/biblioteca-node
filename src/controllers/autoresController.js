@@ -9,12 +9,14 @@ class AutorController{
   static listarAutores = async (req, res, next) => {
     try{
       
-      let criteria = creatorQueries.creteFromQueryParam(
+      const criteria = creatorQueries.creteFromQueryParam(
         req.query, true, ["nome","nacionalidade"]);
 
-      let todosAutores = await autores.find(criteria);
+      const todosAutores = autores.find(criteria);
 
-      res.status(200).json(todosAutores);
+      req.resultado = todosAutores;
+
+      next();      
     }
     catch(erro){
       next(erro);
